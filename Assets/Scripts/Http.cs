@@ -31,7 +31,7 @@ public class Http
 
     public IEnumerator SendToServer(WWWForm parameters)
     {
-        WWW connection = new WWW("http://localhost/arkanoid_server/requests.php", parameters);
+        WWW connection = new WWW("http://localhost/arkanoid_server_php/requests.php", parameters);
 
         float elapsedTime = 0;
 

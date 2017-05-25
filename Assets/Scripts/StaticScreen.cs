@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public abstract class StaticScreen : MonoBehaviour
 {
@@ -26,12 +27,12 @@ public abstract class StaticScreen : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GameController.previousScene = Application.loadedLevel;
+            GameController.previousScene = SceneManager.GetActiveScene().buildIndex;
 
-            switch (Application.loadedLevel)
+            switch (SceneManager.GetActiveScene().buildIndex)
             {
-                case (int)GameController.Scenes.Menu: Application.LoadLevel((int)GameController.Scenes.GameLoad); break;
-                case (int)GameController.Scenes.GameOver: Application.LoadLevel((int)GameController.Scenes.Menu); break;
+                case (int)GameController.Scenes.Menu: SceneManager.LoadScene((int)GameController.Scenes.GameLoad); break;
+                case (int)GameController.Scenes.GameOver: SceneManager.LoadScene((int)GameController.Scenes.Menu); break;
             }
         }
     }
@@ -42,7 +43,7 @@ public abstract class StaticScreen : MonoBehaviour
     /// <param name="nextScene"> scene </param>
     protected void ChangeScene(GameController.Scenes nextScene)
     {
-        GameController.previousScene = Application.loadedLevel;
-        Application.LoadLevel((int)nextScene);
+        GameController.previousScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene((int)nextScene);
     }
 }

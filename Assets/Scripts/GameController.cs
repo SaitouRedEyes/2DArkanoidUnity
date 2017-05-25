@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -120,8 +121,8 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        previousScene = Application.loadedLevel;
+        previousScene = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("Score", score);
-        Application.LoadLevel((int)GameController.Scenes.GameLoad); 
+        SceneManager.LoadScene((int)GameController.Scenes.GameLoad);
     }
 }
