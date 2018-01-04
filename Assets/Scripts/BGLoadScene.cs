@@ -64,12 +64,10 @@ public class BGLoadScene : StaticScreen
 
         WWWForm form = new WWWForm();
         form.AddField("sID", (int)Http.Services.GET_HIGHSCORE);
-
+        
         yield return StartCoroutine(http.SendToServer(form));
-
-        int.TryParse(http.Result, out highscore);
-
-        if (http.Result != null)
+        
+        if (http.Result != null && int.TryParse(http.Result, out highscore))
         {
             PlayerPrefs.SetInt("Highscore", highscore);
             currState = Operation_State.SUCCESS;
@@ -105,7 +103,7 @@ public class BGLoadScene : StaticScreen
 
                     WWWForm form = new WWWForm();
                     form.AddField("sID", (int)Http.Services.SET_HIGHSCORE);
-                    form.AddField("value", PlayerPrefs.GetInt("Score"));
+                    form.AddField("value", PlayerPrefs.GetInt("Score"));                 
 
                     yield return StartCoroutine(http.SendToServer(form));
 

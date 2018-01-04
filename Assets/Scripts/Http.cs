@@ -47,8 +47,8 @@ public class Http
             result = null;
             yield break;
         }
-
-        result = connection.text;
+        
+        result = connection.text.Trim();
         connection.Dispose();
     }
 }
